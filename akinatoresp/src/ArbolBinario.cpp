@@ -1,4 +1,5 @@
 #include "ArbolBinario.hpp"
+#include "Nodo.hpp"
 
 ArbolBinario::ArbolBinario()
 {
