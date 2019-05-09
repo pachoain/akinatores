@@ -25,3 +25,5 @@
 14) git push
 
 15) git checkout nom-dev
+
+16) Pour voir l'état des branches, gitk --all &
