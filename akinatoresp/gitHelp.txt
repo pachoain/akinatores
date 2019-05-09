@@ -1,0 +1,27 @@
+1) Aller dans le dossier où se trouve le projet, clic droit, Git Bash here
+
+2) git checkout master
+
+3) git status
+
+4) git pull
+
+6) git checkout nom-dev
+
+7) git merge master
+
+8) Quand vous avez fini de travailler, git status
+
+9) git add les fichiers modifiés ou nouveaux
+
+10) git commit -m "ce que vous avez modifié" // Ex : git commit -m "add function delete node"
+
+11) git push
+
+12) git checkout master
+
+13) git merge nom-dev
+
+14) git push
+
+15) git checkout nom-dev
