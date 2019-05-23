@@ -13,7 +13,7 @@ class ArbolBinario
 
     public:
         ArbolBinario();
-        ArbolBinario(Nodo nod, ArbolBinario arbolYes, ArbolBinario arbolNo);
+        ArbolBinario(Nodo nod, ArbolBinario *arbolYes=NULL, ArbolBinario *arbolNo=NULL);
         virtual ~ArbolBinario();
 
         void setRaiz(Nodo raiz);
@@ -23,7 +23,7 @@ class ArbolBinario
         void setNo(ArbolBinario No);
         ArbolBinario getNo();
 
-        void anadirNodo(Nodo nodo, Nodo padre, bool respuesta);
+        ArbolBinario anadirNodo(Nodo nodo, ArbolBinario padre, bool respuesta);
         void borrarNodo(Nodo nodo);
         void buscar();
 
