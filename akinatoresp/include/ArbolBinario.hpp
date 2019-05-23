@@ -12,10 +12,10 @@ class ArbolBinario
         ArbolBinario();
         virtual ~ArbolBinario();
 
-        void setRaiz(nodo raiz);
-        nodo getRaiz();
-        void anadirNodo(nodo nodo, nodo padre, bool respuesta);
-        void borrarNodo(nodo nodo);
+        void setRaiz(Nodo raiz);
+        Nodo getRaiz();
+        void anadirNodo(Nodo nodo, Nodo padre, bool respuesta);
+        void borrarNodo(Nodo nodo);
 
 
     protected:

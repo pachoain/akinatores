@@ -9,8 +9,8 @@ Nodo::Nodo(int ID_n, string Name_n, int id_from_n, bool response_n, int ID_son_l
     IsNode=response_n;
     if (IsNode)
         {
-            ID_son_l=ID_son_l_n;
-            ID_son_r=ID_son_r_n;
+            ID_son_Y=ID_son_l_n;
+            ID_son_N=ID_son_r_n;
         }
 }
 
@@ -49,25 +49,25 @@ int Nodo::get_UpperNode()
 }
 
 //getter and setter for the sons of this node
-void Nodo::set_IDsonL(int Lson)
+void Nodo::set_IDsonY(int Yson)
 {
     IsNode=1;
-    ID_son_l=Lson;
+    ID_son_Y=Yson;
 }
 
-int Nodo::get_IDsonL()
+int Nodo::get_IDsonY()
 {
-    return(ID_son_l)
+    return(ID_son_Y)
 }
 
-void Nodo::set_IDsonR(int Rson)
+void Nodo::set_IDsonN(int Nson)
 {
     IsNode=1;
-    ID_son_r=Rson;
+    ID_son_N=Nson;
 }
 
-int Nodo::get_IDsonR()
+int Nodo::get_IDsonN()
 {
-    return(ID_son_r)
+    return(ID_son_N)
 }
 

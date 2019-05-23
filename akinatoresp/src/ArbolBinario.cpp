@@ -3,28 +3,28 @@
 
 ArbolBinario::ArbolBinario()
 {
-    this.raiz = NULL;
+    this->raiz = NULL;
 }
 
-ArbolBinario::ArbolBinario(nodo nod)
+ArbolBinario::ArbolBinario(Nodo nod)
 {
-    this.raiz = nod;
+    this->raiz = nod;
 }
 
 ArbolBinario::~ArbolBinario()
 {
-    delete this.raiz;
+    delete this->raiz;
 }
 
-void ArbolBinario::setRaiz(nodo nod){
-    this.raiz = nod;
+void ArbolBinario::setRaiz(Nodo nod){
+    this->raiz = nod;
 }
 
-nodo ArbolBinario::getRaiz(){
-    return this.raiz;
+Nodo ArbolBinario::getRaiz(){
+    return this->raiz;
 }
 
-void ArbolBinario::anadirNodo(nodo nodo, nodo padre, bool respuesta){
+void ArbolBinario::anadirNodo(Nodo nodo, Nodo padre, bool respuesta){
     //metodo para anadir un nodo
 
 }

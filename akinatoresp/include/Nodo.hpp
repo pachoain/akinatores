@@ -12,22 +12,22 @@ public :
     int get_ID();
     string get_Name();
     int get_UpperNode();
-    int get_IDsonL();
-    int get_IDsonR();
+    int get_IDsonY();
+    int get_IDsonN();
 
-    void set_IDsonL(int Lson);
-    void set_IDsonR(int Rson);
+    void set_IDsonY(int Yson);
+    void set_IDsonN(int Nson);
     void set_UpperNode(int UN);
 
 protected :
 
 private :
-    bool IsNode;
     int ID;
     string Name;
+    bool IsNode;
     int UpperNode;
-    int ID_son_l;
-    int ID_son_r;
+    int ID_son_Y;
+    int ID_son_N;
 
 };
 
