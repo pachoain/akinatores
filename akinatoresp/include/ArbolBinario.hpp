@@ -1,11 +1,14 @@
 #ifndef ARBOLBINARIO_HPP
 #define ARBOLBINARIO_HPP
+#include "Nodo.hpp"
 
 
 class ArbolBinario
 {
     private:
-        nodo raiz;
+        Nodo Raiz;
+        ArbolBinario Yes;
+        ArbolBinario No;
 
 
     public:
@@ -14,8 +17,14 @@ class ArbolBinario
 
         void setRaiz(Nodo raiz);
         Nodo getRaiz();
+        void setYes(ArbolBinario Yes);
+        ArbolBinario getYes();
+        void setNo(ArbolBinario No);
+        ArbolBinario getNo();
+
         void anadirNodo(Nodo nodo, Nodo padre, bool respuesta);
         void borrarNodo(Nodo nodo);
+        void buscar();
 
 
     protected:
