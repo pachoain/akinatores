@@ -7,12 +7,13 @@ class ArbolBinario
 {
     private:
         Nodo Raiz;
-        ArbolBinario Yes;
-        ArbolBinario No;
+        ArbolBinario *Yes;
+        ArbolBinario *No;
 
 
     public:
         ArbolBinario();
+        ArbolBinario(Nodo nod, ArbolBinario arbolYes, ArbolBinario arbolNo);
         virtual ~ArbolBinario();
 
         void setRaiz(Nodo raiz);

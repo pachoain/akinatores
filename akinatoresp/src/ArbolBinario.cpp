@@ -1,20 +1,24 @@
+#include <iostream>
+#include <string>
 #include "ArbolBinario.hpp"
 #include "Nodo.hpp"
 
-//COnstructores y destructor
+using namespace std;
+
+//Constructores y destructor
 
 ArbolBinario::ArbolBinario()
 {
-    this->raiz = Nodo();
+    this->Raiz = Nodo();
     this->Yes = NULL;
     this->No = NULL;
 }
 
 ArbolBinario::ArbolBinario(Nodo nod, ArbolBinario arbolYes, ArbolBinario arbolNo)
 {
-    this->raiz = nod;
-    this->Yes = arbolYes;
-    this->No = arbolNo;
+    this->Raiz = nod;
+    this->Yes = &arbolYes;
+    this->No = &arbolNo;
 }
 
 ArbolBinario::~ArbolBinario()
@@ -25,27 +29,27 @@ ArbolBinario::~ArbolBinario()
 //Método de tipo setter y getter
 
 void ArbolBinario::setRaiz(Nodo nod){
-    this->raiz = nod;
+    this->Raiz = nod;
 }
 
 Nodo ArbolBinario::getRaiz(){
-    return this->raiz;
+    return this->Raiz;
 }
 
 void ArbolBinario::setYes(ArbolBinario arbol){
-    this->Yes = arbol;
+    this->Yes = &arbol;
 }
 
 void ArbolBinario::setNo(ArbolBinario arbol){
-    this->No = arbol;
+    this->No = &arbol;
 }
 
 ArbolBinario ArbolBinario::getYes(){
-    return this->Yes;
+    return *this->Yes;
 }
 
 ArbolBinario ArbolBinario::getNo(){
-    return this->No;
+    return *this->No;
 }
 
 //Funciones del arbol
@@ -55,29 +59,29 @@ void ArbolBinario::anadirNodo(Nodo nodo, Nodo padre, bool respuesta){
 
 }
 
-void ArbolBinario::borrarNodo(nodo nodo){
+void ArbolBinario::borrarNodo(Nodo nodo){
     // metodo para borrar un nodo en el arbol
 
 }
 
 void ArbolBinario::buscar(){
 
-    if (raiz.get_IsNode() == false){
-        cout << araiz.get_Name() << endl;
+    if (Raiz.get_IsNode() == false){
+        cout << Raiz.get_Name() << endl;
         return;
     }
 
-    char respuesta;
-    cout << raiz.get_Name() << endl;
-    cin >> respuesta >> endl;
+    string respuesta;
+    cout << Raiz.get_Name() << endl;
+    cin >> respuesta;
 
 
-    while (raiz.get_IsNode() == true){
-        if (a == "y"){
-            this->Yes.buscar();
+    while (Raiz.get_IsNode() == true){
+        if (respuesta == "y"){
+            this->Yes->buscar();
         }
         else{
-            this->No.buscar();
+            this->No->buscar();
         }
     }
 }
