@@ -42,8 +42,6 @@ void Fichero::fillData(ifstream& file) {
         vIdSonY.push_back(stoi(idSonY));
         vIdSonF.push_back(stoi(idSonF));
 
-        cout << vId.size() << endl;
-
         fillData(file);
     }
 }
