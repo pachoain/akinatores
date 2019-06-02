@@ -4,7 +4,7 @@
 #include <cstring>
 #include <sstream>
 
-#include "funciones.hpp"
+#include "Fichero.hpp"
 #include "ArbolBinario.hpp"
 
 using namespace std;
@@ -15,14 +15,13 @@ int main(int argc, char const *argv[]) {
         string line;
         getline(data, line);
 
-        vector<int> vId;
-        vector<string> vName;
-        vector<bool> vIsNode;
-        vector<int> vIdFrom;
-        vector<int> vIdSonY;
-        vector<int> vIdSonF;
+        Fichero * fichero = new Fichero();
+        fichero[0].fillData(data);
+        vector<Nodo> vNodo = fichero[0].vectToNodo();
 
-        fillData(data, vId, vName, vIsNode, vIdFrom, vIdSonY, vIdSonF);
+        for (int i = 0 ; i < vNodo.size() ; i++) {
+            vNodo[i].toString();
+        }
 
         data.close();
     } else {

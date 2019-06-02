@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Nodo.hpp"
 
 using namespace std;
@@ -18,6 +20,11 @@ Nodo::Nodo(int ID_n, string Name_n, int id_from_n, bool response_n, int ID_son_l
         {
             ID_son_Y=ID_son_l_n;
             ID_son_N=ID_son_r_n;
+        }
+    else
+        {
+            ID_son_Y=0;
+            ID_son_N=0;
         }
 }
 
@@ -78,3 +85,7 @@ int Nodo::get_IDsonN()
     return ID_son_N;
 }
 
+void Nodo::toString()
+{
+    cout << "id: " << ID << " name: " << Name << " isNode: " << IsNode << " upperNode: " << UpperNode << " id_son_y: " << ID_son_Y << " id_son_n: " << ID_son_N << endl;
+}

@@ -24,6 +24,8 @@ public :
     void set_IDsonN(int Nson);
     void set_UpperNode(int UN);
 
+    void toString();
+
 protected :
 
 private :

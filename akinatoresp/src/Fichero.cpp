@@ -1,11 +1,24 @@
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <vector>
 #include <cstring>
+#include <sstream>
+
+#include "Fichero.hpp"
 
 using namespace std;
 
-void fillData(ifstream& file, vector<int> vId, vector<string> vName, vector<bool> vIsNode, vector<int> vIdFrom, vector<int> vIdSonY, vector<int> vIdSonF) {
+Fichero::Fichero()
+{
+    //ctor
+}
+
+Fichero::~Fichero()
+{
+    //dtor
+}
+
+void Fichero::fillData(ifstream& file) {
     string id;
     string name;
     string isNode;
@@ -29,6 +42,20 @@ void fillData(ifstream& file, vector<int> vId, vector<string> vName, vector<bool
         vIdSonY.push_back(stoi(idSonY));
         vIdSonF.push_back(stoi(idSonF));
 
-        fillData(file, vId, vName, vIsNode, vIdFrom, vIdSonY, vIdSonF);
+        cout << vId.size() << endl;
+
+        fillData(file);
     }
+}
+
+vector<Nodo> Fichero::vectToNodo() {
+    vector<Nodo> vNodo;
+
+    for (int i = 0 ; i < vId.size() ; i++) {
+        Nodo * temp = new Nodo(vId[i], vName[i], vIdFrom[i], vIsNode[i], vIdSonY[i], vIdSonF[i]);
+        vNodo.push_back(temp[0]);
+        delete temp;
+    }
+
+    return vNodo;
 }
