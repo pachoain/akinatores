@@ -23,7 +23,7 @@ class ArbolBinario
         void setNo(ArbolBinario No);
         ArbolBinario getNo();
 
-        ArbolBinario anadirNodo(Nodo nodo, ArbolBinario padre, bool respuesta);
+        ArbolBinario anadirNodo(Nodo nodo, int idPadre, bool respuesta);
         void borrarNodo(Nodo nodo);
         void buscar();
         void toString();

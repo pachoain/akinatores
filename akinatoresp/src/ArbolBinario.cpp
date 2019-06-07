@@ -54,10 +54,10 @@ ArbolBinario ArbolBinario::getNo(){
 
 //Métodos del arbol
 
-ArbolBinario ArbolBinario::anadirNodo(Nodo nodo, ArbolBinario padre, bool respuesta){
+ArbolBinario ArbolBinario::anadirNodo(Nodo nodo, int idPadre, bool respuesta){
     //metodo para anadir un nodo
     ArbolBinario arbol = ArbolBinario(nodo);
-    if (respuesta){
+    /*if (respuesta){
         padre.yes = &arbol;
         padre.getRaiz().set_IDsonY(nodo.get_ID());
         nodo.set_UpperNode(padre.getRaiz().get_ID());
@@ -66,8 +66,8 @@ ArbolBinario ArbolBinario::anadirNodo(Nodo nodo, ArbolBinario padre, bool respue
         padre.no = &arbol;
         padre.getRaiz().set_IDsonN(nodo.get_ID());
         nodo.set_UpperNode(padre.getRaiz().get_ID());
-    }
-    return padre;
+    }*/
+    return arbol;
 }
 
 void ArbolBinario::borrarNodo(Nodo nodo){
@@ -78,16 +78,38 @@ void ArbolBinario::borrarNodo(Nodo nodo){
 void ArbolBinario::buscar(){
 
     if (raiz.get_IsNode() == false){
-        cout << raiz.get_Name() << endl;
+        cout << "It is : " << raiz.get_Name() << ". Is it correct ? [y/n]" << endl;
+        string ans;
+        cin >> ans;
+        if(ans == "n") {
+            cout << "Too bad ! Which is the correct answer ?" << endl;
+            string correctAns;
+            cin >> correctAns;
+            cout << "What is the difference between " << correctAns << " and " << raiz.get_Name() << " ?" << endl;
+            string diff;
+            cin.ignore();
+            getline(cin, diff);
+            cout << "What would the correct answer be for " << correctAns << " ? [y/n]" << endl;
+            string ansToCorrectAns;
+            cin >> ansToCorrectAns;
+            bool boolAnsToCorrectAns;
+            if(ansToCorrectAns == "y") {
+                boolAnsToCorrectAns = true;
+            } else {
+                boolAnsToCorrectAns = false;
+            }
+            cout << "OK, I got it." << endl;
+            Nodo newNodo = Nodo();
+            this->anadirNodo(newNodo, raiz.get_UpperNode(), boolAnsToCorrectAns);
+        }
         return;
     }
 
-    string respuesta;
-    cout << raiz.get_Name() << endl;
-    cin >> respuesta;
+    cout << raiz.get_Name() << "[y/n]" << endl;
 
-
-    while (raiz.get_IsNode() == true){
+    if (raiz.get_IsNode() == true){
+        string respuesta;
+        cin >> respuesta;
         if (respuesta == "y"){
             this->yes->buscar();
         }

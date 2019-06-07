@@ -61,12 +61,12 @@ ArbolBinario Fichero::crearArbol(vector<Nodo> vNodo, int index) {
     if(vNodo[index].get_IsNode()) {
         ArbolBinario yes = this->crearArbol(vNodo, vNodo[index].get_IDsonY()-1);
         ArbolBinario no = this->crearArbol(vNodo, vNodo[index].get_IDsonN()-1);
-        ArbolBinario raiz = ArbolBinario(vNodo[index], &yes, &no);
+        ArbolBinario * raiz = new ArbolBinario(vNodo[index], &yes, &no);
         cout << vNodo[index].get_Name() << endl;
-        return raiz;
+        return *raiz;
     } else {
-        ArbolBinario raiz = ArbolBinario(vNodo[index]);
+        ArbolBinario * raiz = new ArbolBinario(vNodo[index]);
         cout << vNodo[index].get_Name() << endl;
-        return raiz;
+        return *raiz;
     }
 }
