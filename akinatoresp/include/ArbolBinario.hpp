@@ -24,7 +24,7 @@ class ArbolBinario
         ArbolBinario getNo();
 
         ArbolBinario anadirNodo(Nodo nodo, ArbolBinario padre, bool respuesta);
-        void borrarNodo(Nodo nodo);
+
         void buscar();
 
 

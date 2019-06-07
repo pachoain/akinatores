@@ -70,10 +70,7 @@ ArbolBinario ArbolBinario::anadirNodo(Nodo nodo, ArbolBinario padre, bool respue
     return padre;
 }
 
-void ArbolBinario::borrarNodo(Nodo nodo){
-    // metodo para borrar un nodo en el arbol
 
-}
 
 void ArbolBinario::buscar(){
 
