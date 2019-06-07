@@ -9,11 +9,12 @@ class ArbolBinario
         Nodo raiz;
         ArbolBinario *yes;
         ArbolBinario *no;
+        ArbolBinario *father;
 
 
     public:
         ArbolBinario();
-        ArbolBinario(Nodo nod, ArbolBinario *arbolYes=NULL, ArbolBinario *arbolNo=NULL);
+        ArbolBinario(Nodo nod, ArbolBinario *arbolYes=NULL, ArbolBinario *arbolNo=NULL, ArbolBinario *fath=NULL);
         virtual ~ArbolBinario();
 
         void setRaiz(Nodo raiz);
@@ -22,8 +23,10 @@ class ArbolBinario
         ArbolBinario getYes();
         void setNo(ArbolBinario No);
         ArbolBinario getNo();
+        void setFather(ArbolBinario Father);
+        ArbolBinario getFather();
 
-        ArbolBinario anadirNodo(Nodo nodo, int idPadre, bool respuesta);
+        ArbolBinario anadirNodo(Nodo nodo, ArbolBinario Padre, bool respuesta);
         void borrarNodo(Nodo nodo);
         void buscar();
         void toString();

@@ -12,13 +12,15 @@ ArbolBinario::ArbolBinario()
     this->raiz = Nodo();
     this->yes = NULL;
     this->no = NULL;
+    this->father = NULL;
 }
 
-ArbolBinario::ArbolBinario(Nodo nod, ArbolBinario *arbolYes, ArbolBinario *arbolNo)
+ArbolBinario::ArbolBinario(Nodo nod, ArbolBinario *arbolYes, ArbolBinario *arbolNo, ArbolBinario *fath)
 {
     this->raiz = nod;
     this->yes = arbolYes;
     this->no = arbolNo;
+    this->father = fath;
 }
 
 ArbolBinario::~ArbolBinario()
@@ -52,12 +54,20 @@ ArbolBinario ArbolBinario::getNo(){
     return *this->no;
 }
 
+ArbolBinario ArbolBinario::getFather(){
+    return *this->father;
+}
+
+void ArbolBinario::setFather(ArbolBinario Father){
+    this->father = &Father;
+}
+
 //Métodos del arbol
 
-ArbolBinario ArbolBinario::anadirNodo(Nodo nodo, int idPadre, bool respuesta){
+ArbolBinario ArbolBinario::anadirNodo(Nodo nodo,  ArbolBinario padre, bool respuesta){
     //metodo para anadir un nodo
     ArbolBinario arbol = ArbolBinario(nodo);
-    /*if (respuesta){
+    if (respuesta){
         padre.yes = &arbol;
         padre.getRaiz().set_IDsonY(nodo.get_ID());
         nodo.set_UpperNode(padre.getRaiz().get_ID());
@@ -66,7 +76,7 @@ ArbolBinario ArbolBinario::anadirNodo(Nodo nodo, int idPadre, bool respuesta){
         padre.no = &arbol;
         padre.getRaiz().set_IDsonN(nodo.get_ID());
         nodo.set_UpperNode(padre.getRaiz().get_ID());
-    }*/
+    }
     return arbol;
 }
 
@@ -100,7 +110,7 @@ void ArbolBinario::buscar(){
             }
             cout << "OK, I got it." << endl;
             Nodo newNodo = Nodo();
-            this->anadirNodo(newNodo, raiz.get_UpperNode(), boolAnsToCorrectAns);
+            this->anadirNodo(newNodo, *this->father, boolAnsToCorrectAns);
         }
         return;
     }
