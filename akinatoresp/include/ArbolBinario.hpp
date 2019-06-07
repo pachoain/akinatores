@@ -6,9 +6,9 @@
 class ArbolBinario
 {
     private:
-        Nodo Raiz;
-        ArbolBinario *Yes;
-        ArbolBinario *No;
+        Nodo raiz;
+        ArbolBinario *yes;
+        ArbolBinario *no;
 
 
     public:
@@ -26,6 +26,7 @@ class ArbolBinario
         ArbolBinario anadirNodo(Nodo nodo, ArbolBinario padre, bool respuesta);
         void borrarNodo(Nodo nodo);
         void buscar();
+        void toString();
 
 
     protected:

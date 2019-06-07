@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "Nodo.hpp"
+#include "ArbolBinario.hpp"
 
 class Fichero
 {
@@ -13,6 +14,7 @@ class Fichero
 
         void fillData(ifstream& file);
         vector<Nodo> vectToNodo();
+        ArbolBinario crearArbol(vector<Nodo> vNodo, int index);
 
     protected:
 

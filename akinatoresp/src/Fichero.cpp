@@ -32,7 +32,7 @@ void Fichero::fillData(ifstream& file) {
     getline(file, idFrom, ';') &&
     getline(file, idSonY, ';') &&
     getline(file, idSonF, ';')) {
-        cout << id << name << isNode << idFrom << idSonY << idSonF << endl;
+        //cout << id << name << isNode << idFrom << idSonY << idSonF << endl;
         vId.push_back(stoi(id));
         vName.push_back(name);
         bool bIsNode;
@@ -49,11 +49,24 @@ void Fichero::fillData(ifstream& file) {
 vector<Nodo> Fichero::vectToNodo() {
     vector<Nodo> vNodo;
 
-    for (int i = 0 ; i < vId.size() ; i++) {
-        Nodo * temp = new Nodo(vId[i], vName[i], vIdFrom[i], vIsNode[i], vIdSonY[i], vIdSonF[i]);
-        vNodo.push_back(temp[0]);
-        delete temp;
+    for (int i = 0 ; i < (int)vId.size() ; i++) {
+        Nodo temp = Nodo(vId[i], vName[i], vIdFrom[i], vIsNode[i], vIdSonY[i], vIdSonF[i]);
+        vNodo.push_back(temp);
     }
 
     return vNodo;
+}
+
+ArbolBinario Fichero::crearArbol(vector<Nodo> vNodo, int index) {
+    if(vNodo[index].get_IsNode()) {
+        ArbolBinario yes = this->crearArbol(vNodo, vNodo[index].get_IDsonY()-1);
+        ArbolBinario no = this->crearArbol(vNodo, vNodo[index].get_IDsonN()-1);
+        ArbolBinario raiz = ArbolBinario(vNodo[index], &yes, &no);
+        cout << vNodo[index].get_Name() << endl;
+        return raiz;
+    } else {
+        ArbolBinario raiz = ArbolBinario(vNodo[index]);
+        cout << vNodo[index].get_Name() << endl;
+        return raiz;
+    }
 }

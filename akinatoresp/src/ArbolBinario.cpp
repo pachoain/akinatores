@@ -9,16 +9,16 @@ using namespace std;
 
 ArbolBinario::ArbolBinario()
 {
-    this->Raiz = Nodo();
-    this->Yes = NULL;
-    this->No = NULL;
+    this->raiz = Nodo();
+    this->yes = NULL;
+    this->no = NULL;
 }
 
 ArbolBinario::ArbolBinario(Nodo nod, ArbolBinario *arbolYes, ArbolBinario *arbolNo)
 {
-    this->Raiz = nod;
-    this->Yes = arbolYes;
-    this->No = arbolNo;
+    this->raiz = nod;
+    this->yes = arbolYes;
+    this->no = arbolNo;
 }
 
 ArbolBinario::~ArbolBinario()
@@ -29,27 +29,27 @@ ArbolBinario::~ArbolBinario()
 //Método de tipo setter y getter
 
 void ArbolBinario::setRaiz(Nodo nod){
-    this->Raiz = nod;
+    this->raiz = nod;
 }
 
 Nodo ArbolBinario::getRaiz(){
-    return this->Raiz;
+    return this->raiz;
 }
 
 void ArbolBinario::setYes(ArbolBinario arbol){
-    this->Yes = &arbol;
+    this->yes = &arbol;
 }
 
 void ArbolBinario::setNo(ArbolBinario arbol){
-    this->No = &arbol;
+    this->no = &arbol;
 }
 
 ArbolBinario ArbolBinario::getYes(){
-    return *this->Yes;
+    return *this->yes;
 }
 
 ArbolBinario ArbolBinario::getNo(){
-    return *this->No;
+    return *this->no;
 }
 
 //Métodos del arbol
@@ -58,12 +58,12 @@ ArbolBinario ArbolBinario::anadirNodo(Nodo nodo, ArbolBinario padre, bool respue
     //metodo para anadir un nodo
     ArbolBinario arbol = ArbolBinario(nodo);
     if (respuesta){
-        padre.Yes = &arbol;
+        padre.yes = &arbol;
         padre.getRaiz().set_IDsonY(nodo.get_ID());
         nodo.set_UpperNode(padre.getRaiz().get_ID());
     }
     else{
-        padre.No = &arbol;
+        padre.no = &arbol;
         padre.getRaiz().set_IDsonN(nodo.get_ID());
         nodo.set_UpperNode(padre.getRaiz().get_ID());
     }
@@ -77,23 +77,33 @@ void ArbolBinario::borrarNodo(Nodo nodo){
 
 void ArbolBinario::buscar(){
 
-    if (Raiz.get_IsNode() == false){
-        cout << Raiz.get_Name() << endl;
+    if (raiz.get_IsNode() == false){
+        cout << raiz.get_Name() << endl;
         return;
     }
 
     string respuesta;
-    cout << Raiz.get_Name() << endl;
+    cout << raiz.get_Name() << endl;
     cin >> respuesta;
 
 
-    while (Raiz.get_IsNode() == true){
+    while (raiz.get_IsNode() == true){
         if (respuesta == "y"){
-            this->Yes->buscar();
+            this->yes->buscar();
         }
         else{
-            this->No->buscar();
+            this->no->buscar();
         }
     }
 }
 
+void ArbolBinario::toString(){
+    this->getRaiz().toString();
+
+    if(this->getRaiz().get_IsNode()) {
+        this->getYes().toString();
+    }
+    if(this->getRaiz().get_IsNode()) {
+        this->getNo().toString();
+    }
+}
