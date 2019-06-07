@@ -22,6 +22,7 @@ class Fichero
         vector<int> vId;
         vector<string> vName;
         vector<bool> vIsNode;
+        vector<bool> vResponse;
         vector<int> vIdFrom;
         vector<int> vIdSonY;
         vector<int> vIdSonF;

@@ -22,6 +22,7 @@ void Fichero::fillData(ifstream& file) {
     string id;
     string name;
     string isNode;
+    string response;
     string idFrom;
     string idSonY;
     string idSonF;
@@ -31,13 +32,17 @@ void Fichero::fillData(ifstream& file) {
     getline(file, isNode, ';') &&
     getline(file, idFrom, ';') &&
     getline(file, idSonY, ';') &&
-    getline(file, idSonF, ';')) {
+    getline(file, idSonF, ';') &&
+    getline(file, response, ';')) {
         //cout << id << name << isNode << idFrom << idSonY << idSonF << endl;
         vId.push_back(stoi(id));
         vName.push_back(name);
         bool bIsNode;
         istringstream(isNode) >> bIsNode;
+        bool bResponse;
         vIsNode.push_back(bIsNode);
+        istringstream(response) >> bResponse;
+        vIsNode.push_back(bResponse);
         vIdFrom.push_back(stoi(idFrom));
         vIdSonY.push_back(stoi(idSonY));
         vIdSonF.push_back(stoi(idSonF));
@@ -50,7 +55,7 @@ vector<Nodo> Fichero::vectToNodo() {
     vector<Nodo> vNodo;
 
     for (int i = 0 ; i < (int)vId.size() ; i++) {
-        Nodo temp = Nodo(vId[i], vName[i], vIdFrom[i], vIsNode[i], vIdSonY[i], vIdSonF[i]);
+        Nodo temp = Nodo(vId[i], vName[i], vIsNode[i], vResponse[i], vIdSonY[i], vIdSonF[i],  vIdFrom[i]);
         vNodo.push_back(temp);
     }
 

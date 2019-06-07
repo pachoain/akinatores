@@ -10,22 +10,30 @@ Nodo::Nodo()
 
 }
 
-Nodo::Nodo(int ID_n, string Name_n, int id_from_n, bool response_n, int ID_son_l_n, int ID_son_r_n)
+Nodo::Nodo(int ID_n, string Name_n, bool IsNode_n, bool response_n, int ID_son_l_n, int ID_son_r_n, int id_from_n)
 {
     ID=ID_n;
     Name=Name_n;
-    UpperNode=id_from_n;
-    IsNode=response_n;
-    if (IsNode)
-        {
-            ID_son_Y=ID_son_l_n;
-            ID_son_N=ID_son_r_n;
-        }
+    if (id_from_n)
+    {
+        UpperNode=id_from_n;
+    }
     else
-        {
-            ID_son_Y=0;
-            ID_son_N=0;
-        }
+    {
+        UpperNode=0;
+    }
+    IsNode=IsNode_n;
+    response = response_n;
+    if (IsNode)
+    {
+        ID_son_Y=ID_son_l_n;
+        ID_son_N=ID_son_r_n;
+    }
+    else
+    {
+        ID_son_Y=0;
+        ID_son_N=0;
+    }
 }
 
 Nodo::~Nodo()
@@ -49,6 +57,12 @@ string Nodo::get_Name()
 int Nodo::get_ID()
 {
     return ID;
+}
+
+//Wich response from the upper node leads to this node
+bool Nodo::get_response()
+{
+    return response;
 }
 
 //getter and setter for the father of this node

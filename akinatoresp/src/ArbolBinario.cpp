@@ -71,13 +71,15 @@ ArbolBinario ArbolBinario::anadirNodo(Nodo nodo,  ArbolBinario padre, bool respu
         padre.yes = &arbol;
         padre.getRaiz().set_IDsonY(nodo.get_ID());
         nodo.set_UpperNode(padre.getRaiz().get_ID());
+        arbol.setFather(padre);
     }
     else{
         padre.no = &arbol;
         padre.getRaiz().set_IDsonN(nodo.get_ID());
         nodo.set_UpperNode(padre.getRaiz().get_ID());
+        arbol.setFather(padre);
     }
-    return arbol;
+    return padre;
 }
 
 void ArbolBinario::borrarNodo(Nodo nodo){
@@ -109,8 +111,21 @@ void ArbolBinario::buscar(){
                 boolAnsToCorrectAns = false;
             }
             cout << "OK, I got it." << endl;
-            Nodo newNodo = Nodo();
-            this->anadirNodo(newNodo, *this->father, boolAnsToCorrectAns);
+
+            int *p = new int; //encontrar un entero
+            int *q = new int; //encontrar un entero
+            Nodo newQuestion = Nodo(*p, diff, true, 0, 0, 0, this->father->raiz.get_ID());
+            Nodo newNodo = Nodo(*q, correctAns, false, 0, 0, 0, *p);
+            ArbolBinario newArbol = ArbolBinario(newQuestion);
+
+            if (raiz.get_response())
+            {
+                this->father.setYes(anadirNodo(raiz, anadirNodo(newNodo, newArbol, boolAnsToCorrectAns), !(boolAnsToCorrectAns)));
+            }
+            else
+            {
+                this->father.setNo(anadirNodo(raiz, anadirNodo(newNodo, newArbol, boolAnsToCorrectAns), !(boolAnsToCorrectAns)));
+            }
         }
         return;
     }

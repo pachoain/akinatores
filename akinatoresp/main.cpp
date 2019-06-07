@@ -29,6 +29,15 @@ int main(int argc, char const *argv[]) {
         ArbolBinario fly = ArbolBinario(vNodo[6], &bird, &cat);
         ArbolBinario arbol = ArbolBinario(vNodo[0], &mammal, &fly);
 
+        dolphin.setFather(mammal);
+        octopus.setFather(tentacles);
+        shark.setFather(tentacles);
+        tentacles.setFather(mammal);
+        mammal.setFather(arbol);
+        bird.setFather(fly);
+        cat.setFather(fly);
+        fly.setFather(arbol);
+
         //ArbolBinario arbol = fichero.crearArbol(vNodo, 0);
         string ans;
         do {
