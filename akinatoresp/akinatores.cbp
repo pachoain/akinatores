@@ -34,8 +34,13 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="include/ArbolBinario.hpp" />
+		<Unit filename="include/Fichero.hpp" />
+		<Unit filename="include/Nodo.hpp" />
+		<Unit filename="include/data.txt" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/ArbolBinario.cpp" />
+		<Unit filename="src/Fichero.cpp" />
+		<Unit filename="src/Nodo.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

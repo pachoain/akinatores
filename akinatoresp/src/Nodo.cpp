@@ -34,53 +34,53 @@ Nodo::~Nodo()
 }
 
 //Tells if it has sons
-bool Nodo::get_IsNode()
+bool Nodo::get_IsNode()const
 {
     return IsNode;
 }
 
 //Return the Name/Question
-string Nodo::get_Name()
+string Nodo::get_Name()const
 {
     return Name;
 }
 
 //ID of the node, unique
-int Nodo::get_ID()
+int Nodo::get_ID()const
 {
     return ID;
 }
 
 //getter and setter for the father of this node
-void Nodo::set_UpperNode(int UN)
+void Nodo::set_UpperNode(const int UN)
 {
     UpperNode=UN;
 }
 
-int Nodo::get_UpperNode()
+int Nodo::get_UpperNode()const
 {
     return UpperNode;
 }
 
 //getter and setter for the sons of this node
-void Nodo::set_IDsonY(int Yson)
+void Nodo::set_IDsonY(const int Yson)
 {
     IsNode=1;
     ID_son_Y=Yson;
 }
 
-int Nodo::get_IDsonY()
+int Nodo::get_IDsonY() const
 {
     return ID_son_Y;
 }
 
-void Nodo::set_IDsonN(int Nson)
+void Nodo::set_IDsonN(const int Nson)
 {
     IsNode=1;
     ID_son_N=Nson;
 }
 
-int Nodo::get_IDsonN()
+int Nodo::get_IDsonN()const
 {
     return ID_son_N;
 }

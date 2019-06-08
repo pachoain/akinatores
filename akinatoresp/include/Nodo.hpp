@@ -13,16 +13,16 @@ public :
     Nodo(int ID_n, string Name_n, int id_from_n, bool response_n, int ID_son_l_n, int ID_son_r_n);
     ~Nodo();
 
-    bool get_IsNode();
-    int get_ID();
-    string get_Name();
-    int get_UpperNode();
-    int get_IDsonY();
-    int get_IDsonN();
+    bool get_IsNode()const;
+    int get_ID()const;
+    string get_Name()const;
+    int get_UpperNode()const;
+    int get_IDsonY()const;
+    int get_IDsonN()const;
 
-    void set_IDsonY(int Yson);
-    void set_IDsonN(int Nson);
-    void set_UpperNode(int UN);
+    void set_IDsonY(const int Yson);
+    void set_IDsonN(const int Nson);
+    void set_UpperNode(const int UN);
 
     void toString();
 

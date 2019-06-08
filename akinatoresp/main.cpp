@@ -35,7 +35,7 @@ int main(int argc, char const *argv[]) {
             cout << "Do you want to play ? [y/n]" << endl;
             cin >> ans;
             if(ans == "y") {
-                arbol.buscar();
+                arbol.buscar(vNodo.size(), arbol, true);
             }
         } while(ans != "n");
 

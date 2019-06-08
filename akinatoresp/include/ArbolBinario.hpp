@@ -16,16 +16,15 @@ class ArbolBinario
         ArbolBinario(Nodo nod, ArbolBinario *arbolYes=NULL, ArbolBinario *arbolNo=NULL);
         virtual ~ArbolBinario();
 
-        void setRaiz(Nodo raiz);
-        Nodo getRaiz();
-        void setYes(ArbolBinario Yes);
-        ArbolBinario getYes();
-        void setNo(ArbolBinario No);
-        ArbolBinario getNo();
+        void setRaiz(const Nodo raiz);
+        Nodo getRaiz()const;
+        void setYes(const ArbolBinario Yes);
+        ArbolBinario getYes()const;
+        void setNo(const ArbolBinario No);
+        ArbolBinario getNo()const;
 
-        ArbolBinario anadirNodo(Nodo nodo, int idPadre, bool respuesta);
-        void borrarNodo(Nodo nodo);
-        void buscar();
+        void anadirNodo(ArbolBinario &padre, ArbolBinario &newArbol, bool respuesta);
+        void buscar(int newId, ArbolBinario &padre, bool prevRespuesta);
         void toString();
 
 

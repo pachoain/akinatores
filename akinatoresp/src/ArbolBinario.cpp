@@ -28,11 +28,11 @@ ArbolBinario::~ArbolBinario()
 
 //Método de tipo setter y getter
 
-void ArbolBinario::setRaiz(Nodo nod){
+void ArbolBinario::setRaiz(const Nodo nod){
     this->raiz = nod;
 }
 
-Nodo ArbolBinario::getRaiz(){
+Nodo ArbolBinario::getRaiz()const{
     return this->raiz;
 }
 
@@ -44,38 +44,28 @@ void ArbolBinario::setNo(ArbolBinario arbol){
     this->no = &arbol;
 }
 
-ArbolBinario ArbolBinario::getYes(){
+ArbolBinario ArbolBinario::getYes()const{
     return *this->yes;
 }
 
-ArbolBinario ArbolBinario::getNo(){
+ArbolBinario ArbolBinario::getNo()const{
     return *this->no;
 }
 
 //Métodos del arbol
 
-ArbolBinario ArbolBinario::anadirNodo(Nodo nodo, int idPadre, bool respuesta){
+void ArbolBinario::anadirNodo(ArbolBinario &padre, ArbolBinario &newArbol, bool respuesta){
     //metodo para anadir un nodo
-    ArbolBinario arbol = ArbolBinario(nodo);
-    /*if (respuesta){
-        padre.yes = &arbol;
-        padre.getRaiz().set_IDsonY(nodo.get_ID());
-        nodo.set_UpperNode(padre.getRaiz().get_ID());
+    if(respuesta) {
+        padre.setYes(newArbol);
+        padre.getRaiz().set_IDsonY(newArbol.getRaiz().get_ID());
+    } else {
+        padre.setNo(newArbol);
+        padre.getRaiz().set_IDsonN(newArbol.getRaiz().get_ID());
     }
-    else{
-        padre.no = &arbol;
-        padre.getRaiz().set_IDsonN(nodo.get_ID());
-        nodo.set_UpperNode(padre.getRaiz().get_ID());
-    }*/
-    return arbol;
 }
 
-void ArbolBinario::borrarNodo(Nodo nodo){
-    // metodo para borrar un nodo en el arbol
-
-}
-
-void ArbolBinario::buscar(){
+void ArbolBinario::buscar(int newId, ArbolBinario &padre, bool prevRespuesta){
 
     if (raiz.get_IsNode() == false){
         cout << "It is : " << raiz.get_Name() << ". Is it correct ? [y/n]" << endl;
@@ -89,9 +79,11 @@ void ArbolBinario::buscar(){
             string diff;
             cin.ignore();
             getline(cin, diff);
-            cout << "What would the correct answer be for " << correctAns << " ? [y/n]" << endl;
             string ansToCorrectAns;
-            cin >> ansToCorrectAns;
+            do {
+                cout << "What would the correct answer be for " << correctAns << " ? [y/n]" << endl;
+                cin >> ansToCorrectAns;
+            } while (ansToCorrectAns != "y" && ansToCorrectAns != "n");
             bool boolAnsToCorrectAns;
             if(ansToCorrectAns == "y") {
                 boolAnsToCorrectAns = true;
@@ -99,8 +91,22 @@ void ArbolBinario::buscar(){
                 boolAnsToCorrectAns = false;
             }
             cout << "OK, I got it." << endl;
-            Nodo newNodo = Nodo();
-            this->anadirNodo(newNodo, raiz.get_UpperNode(), boolAnsToCorrectAns);
+            Nodo newNodoFinal = Nodo(newId+1, correctAns, newId, false, 0, 0);
+            ArbolBinario newArbolFinal = ArbolBinario(newNodoFinal);
+            this->getRaiz().set_UpperNode(newId);
+            if(boolAnsToCorrectAns) {
+                Nodo newNodo = Nodo(newId, diff, this->getRaiz().get_UpperNode(), true, newId+1, this->getRaiz().get_ID());
+                ArbolBinario newArbol = ArbolBinario(newNodo, this, &newArbolFinal);
+                this->anadirNodo(padre, newArbol, prevRespuesta);
+            } else {
+                Nodo newNodo = Nodo(newId, diff, this->getRaiz().get_UpperNode(), true, this->getRaiz().get_ID(), newId+1);
+                ArbolBinario newArbol = ArbolBinario(newNodo, &newArbolFinal, this);
+                this->anadirNodo(padre, newArbol, prevRespuesta);
+            }
+        } else if (ans == "y") {
+            return;
+        } else {
+            this->buscar(newId, padre, prevRespuesta);
         }
         return;
     }
@@ -111,10 +117,11 @@ void ArbolBinario::buscar(){
         string respuesta;
         cin >> respuesta;
         if (respuesta == "y"){
-            this->yes->buscar();
-        }
-        else{
-            this->no->buscar();
+            this->getYes().buscar(newId, *this, true);
+        } else if (respuesta == "n"){
+            this->getNo().buscar(newId, *this, false);
+        } else {
+            this->buscar(newId, padre, prevRespuesta);
         }
     }
 }
