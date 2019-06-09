@@ -18,13 +18,13 @@ class ArbolBinario
 
         void setRaiz(const Nodo raiz);
         Nodo getRaiz()const;
-        void setYes(const ArbolBinario Yes);
+        void setYes(ArbolBinario* arbol);
         ArbolBinario getYes()const;
-        void setNo(const ArbolBinario No);
+        void setNo(ArbolBinario* arbol);
         ArbolBinario getNo()const;
 
-        void anadirNodo(ArbolBinario &padre, ArbolBinario &newArbol, bool respuesta);
-        void buscar(int newId, ArbolBinario &padre, bool prevRespuesta);
+        void anadirNodo(ArbolBinario* padre, ArbolBinario* newArbol, bool respuesta);
+        void buscar(int newId, ArbolBinario* padre, bool prevRespuesta);
         void toString();
 
 

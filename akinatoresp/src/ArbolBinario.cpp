@@ -36,12 +36,12 @@ Nodo ArbolBinario::getRaiz()const{
     return this->raiz;
 }
 
-void ArbolBinario::setYes(ArbolBinario arbol){
-    this->yes = &arbol;
+void ArbolBinario::setYes( ArbolBinario* arbol){
+    this->yes = arbol;
 }
 
-void ArbolBinario::setNo(ArbolBinario arbol){
-    this->no = &arbol;
+void ArbolBinario::setNo(ArbolBinario* arbol){
+    this->no = arbol;
 }
 
 ArbolBinario ArbolBinario::getYes()const{
@@ -54,18 +54,18 @@ ArbolBinario ArbolBinario::getNo()const{
 
 //Métodos del arbol
 
-void ArbolBinario::anadirNodo(ArbolBinario &padre, ArbolBinario &newArbol, bool respuesta){
+void ArbolBinario::anadirNodo(ArbolBinario* padre, ArbolBinario* newArbol, bool respuesta){
     //metodo para anadir un nodo
     if(respuesta) {
-        padre.setYes(newArbol);
-        padre.getRaiz().set_IDsonY(newArbol.getRaiz().get_ID());
+        padre->setYes(newArbol);
+        padre->getRaiz().set_IDsonY(newArbol->getRaiz().get_ID());
     } else {
-        padre.setNo(newArbol);
-        padre.getRaiz().set_IDsonN(newArbol.getRaiz().get_ID());
+        padre->setNo(newArbol);
+        padre->getRaiz().set_IDsonN(newArbol->getRaiz().get_ID());
     }
 }
 
-void ArbolBinario::buscar(int newId, ArbolBinario &padre, bool prevRespuesta){
+void ArbolBinario::buscar(int newId, ArbolBinario* padre, bool prevRespuesta){
 
     if (raiz.get_IsNode() == false){
         cout << "It is : " << raiz.get_Name() << ". Is it correct ? [y/n]" << endl;
@@ -97,11 +97,11 @@ void ArbolBinario::buscar(int newId, ArbolBinario &padre, bool prevRespuesta){
             if(boolAnsToCorrectAns) {
                 Nodo newNodo = Nodo(newId, diff, this->getRaiz().get_UpperNode(), true, newId+1, this->getRaiz().get_ID());
                 ArbolBinario newArbol = ArbolBinario(newNodo, this, &newArbolFinal);
-                this->anadirNodo(padre, newArbol, prevRespuesta);
+                this->anadirNodo(padre, &newArbol, prevRespuesta);
             } else {
                 Nodo newNodo = Nodo(newId, diff, this->getRaiz().get_UpperNode(), true, this->getRaiz().get_ID(), newId+1);
                 ArbolBinario newArbol = ArbolBinario(newNodo, &newArbolFinal, this);
-                this->anadirNodo(padre, newArbol, prevRespuesta);
+                this->anadirNodo(padre, &newArbol, prevRespuesta);
             }
         } else if (ans == "y") {
             return;
@@ -117,9 +117,9 @@ void ArbolBinario::buscar(int newId, ArbolBinario &padre, bool prevRespuesta){
         string respuesta;
         cin >> respuesta;
         if (respuesta == "y"){
-            this->getYes().buscar(newId, *this, true);
+            this->getYes().buscar(newId, this, true);
         } else if (respuesta == "n"){
-            this->getNo().buscar(newId, *this, false);
+            this->getNo().buscar(newId, this, false);
         } else {
             this->buscar(newId, padre, prevRespuesta);
         }
